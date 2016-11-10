@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         String s;
         String[] note;
         s = ((EditText)findViewById(R.id.editNote)).getText().toString();
-        note = s.split(" ");
+        note = s.split("\\s");
         s = ((EditText)findViewById(R.id.editTeza)).getText().toString();
         double S = 0;
         int K = 0;
@@ -53,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
                     //String f = clearSpace(str);
                     //System.out.println(f);
                     double nr;
-                    nr = Integer.parseInt(str);
-                    S += nr;
-                    K++;
+                    if (str.compareTo("") != 0) {
+                        nr = Integer.parseInt(str);
+                        S += nr;
+                        K++;
+                    }
             }
             S/=K;
 
