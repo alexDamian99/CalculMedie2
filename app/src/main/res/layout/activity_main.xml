@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2A2840"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.alex.calculmedie.MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/txtViewMedie"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#D2D2D2" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="70dp" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Note:"
+                    android:id="@+id/txtViewNote"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#D2D2D2" />
+
+                <EditText
+                    android:layout_width="150dip"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editNote"
+                    android:layout_row="0"
+                    android:layout_column="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Nota Teza:"
+                    android:id="@+id/txtViewTeza"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:textColor="#D2D2D2" />
+
+                <Space
+                    android:layout_width="40dip"
+                    android:layout_height="20dp"
+                    android:layout_row="1"
+                    android:layout_column="2" />
+
+                <EditText
+                    android:layout_width="150dip"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTeza"
+                    android:layout_row="1"
+                    android:layout_column="3" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calculeaza \nMedie"
+                    android:id="@+id/btnMedie"
+                    android:background="#D24A58"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:layout_rowSpan="2"
+                    android:layout_columnSpan="4"
+                    android:layout_gravity="fill_horizontal"
+                    android:onClick="onClickMedie"
+                    android:textColor="#26243C" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clear"
+                    android:id="@+id/btnClear"
+                    android:background="#D24A58"
+                    android:layout_row="6"
+                    android:layout_column="1"
+                    android:layout_columnSpan="4"
+                    android:layout_gravity="fill_horizontal"
+                    android:onClick="onClickClear"
+                    android:textColor="#26243C" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="25dip"
+                    android:layout_row="4"
+                    android:layout_column="1" />
+
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
