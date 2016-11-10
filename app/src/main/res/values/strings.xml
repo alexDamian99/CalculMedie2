@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Calcul Medie</string>
+    <string name="note">Note:</string>
+    <string name="notaTeza">Nota Teza:</string>
+    <string name="btnClear">Clear</string>
+    <string name="btnCalcMedie">Calculeaza\nMedie</string>
+
 </resources>
