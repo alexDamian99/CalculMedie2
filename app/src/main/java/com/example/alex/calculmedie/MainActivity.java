@@ -3,6 +3,8 @@ package com.example.alex.calculmedie;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethod;
@@ -16,10 +18,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //private boolean isReached = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
     }
 
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickClear(View v){
-        //hide keyboard
+        //show keyboard
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0); // aici nu am gasit cum sa fie doar "show keyboard".. :/ am gasit doar toggle
         /*asta nu merge
