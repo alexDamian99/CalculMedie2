@@ -1,24 +1,19 @@
 package com.example.alex.calculmedie;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ImageView;
 
@@ -47,12 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private boolean wasCleared = false;
     private boolean isBtnClicked = false;
-
+    //CAZ EXCEPTIE SPATIU TEZA SI POATE O ANIMATIE DE FADE LA MEDIE DUPA MEDIE
     public void onClickMedie(View v){
         //creez niste variabile pentru imgViewLogo si pentru TxtMedie
         ImageView logo = (ImageView)findViewById(R.id.logo);
         TextView txtMedie = (TextView)findViewById(R.id.txtViewMedie);
+        if(wasCleared){
+            txtMedie.setText("");//setez textul aici deoarece daca faceam asta in btnclear textul disparea inainte ca animatia sa se termine
+        }
+        wasCleared = false;
+
+        txtMedie.setVisibility(View.VISIBLE);
+
+
         //FADE ANIM
         //fade in(o creem)
         Animation fadeIn = new AlphaAnimation(0, 1);
@@ -75,13 +79,29 @@ public class MainActivity extends AppCompatActivity {
         String sNote; // stringul pt note
         String[] note; // notele introduse in editNote
         sNote = ((EditText)findViewById(R.id.editNote)).getText().toString(); // gets the marks from the editNote
-        if (sNote.compareTo("") == 0) Toast.makeText(getApplicationContext(), "Introduceti note", Toast.LENGTH_LONG).show();
         note = sNote.split("\\s"); // splits them in note[]
+
+
+        if (sNote.compareTo("") == 0) {
+            final Toast toast = Toast.makeText(getApplicationContext(), "Introduceti note", Toast.LENGTH_SHORT);
+            toast.show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.cancel();
+                }
+            }, 1000);
+        }
+
 
         String sTeza; // stringul pt teza
         sTeza = ((EditText)findViewById(R.id.editTeza)).getText().toString(); // gets the marks from editTeza
         String[] teza;
         teza = sTeza.split("\\s"); // puts all the marks from editTeza in teza[]
+
+        if(sNote.compareTo("") != 0)logo.setVisibility(View.INVISIBLE);//fac logo-ul invizibil ca sa mearga jucarica de la btnclear
 
         double S = 0;
         int K = 0;
@@ -103,15 +123,23 @@ public class MainActivity extends AppCompatActivity {
                 double Teza = Integer.parseInt(teza[0]); // parses the first mark in editTeza
                 S = (S * 3 + Teza)/4;
             }catch (Exception e){
-                Toast t =  Toast.makeText(getApplicationContext(), "Lipsa teza", Toast.LENGTH_SHORT);
-                t.show();
+                final Toast toast = Toast.makeText(getApplicationContext(), "Lipsa teza", Toast.LENGTH_SHORT);
+                toast.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 1000);
             }
 
             if (sNote.compareTo("") != 0) {
                 txtMedie.setText(String.format("%.2f", S));  // if the editTexts are filled do make the medie and make animation
 
-                //if-ul este pt cazul in care facem mai multe medii(apasam butonul de mai multe ori
+                //if-ul este pt cazul in care facem mai multe medii(apasam butonul de mai multe ori)
                 if(!isBtnClicked) {
+
                     // this will make the logo disappear
                     isBtnClicked = true;
                     logoAnimation.addAnimation(fadeOut);
@@ -119,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                     logo.setVisibility(View.INVISIBLE);
 
                     //dis make txtMEDIE appear
-
                     medieAnimation.addAnimation(fadeIn);
                     txtMedie.setAnimation(medieAnimation);
                     txtMedie.setVisibility(View.VISIBLE);
@@ -130,8 +157,16 @@ public class MainActivity extends AppCompatActivity {
             else txtMedie.setText(""); // else show Medie as ""
 
         }catch(Exception e){
-            Toast t = Toast.makeText(getApplicationContext(), "Date incorecte", Toast.LENGTH_SHORT);
-            t.show();
+            final Toast toast = Toast.makeText(getApplicationContext(), "Date incorete", Toast.LENGTH_SHORT);
+            toast.show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.cancel();
+                }
+            }, 1000);
         }
 
     }
@@ -143,8 +178,43 @@ public class MainActivity extends AppCompatActivity {
         /*asta nu merge
         imm.showSoftInput(findViewById(R.id.btnClear), InputMethod.SHOW_FORCED); */
 
-        ((TextView)findViewById(R.id.txtViewMedie)).setText("");
-        ((EditText)findViewById(R.id.editNote)).setText("");
-        ((EditText)findViewById(R.id.editTeza)).setText("");
+        isBtnClicked = false;
+        //animatii
+        ImageView logo = (ImageView)findViewById(R.id.logo);
+        TextView txtMedie = (TextView)findViewById(R.id.txtViewMedie);
+        if(txtMedie.getVisibility() == View.VISIBLE) {// deci aici am avut o problema
+            //cand mai apasam inca o data pe clear, dupa ce am apasat acest buton o data, animatia cu medie pornea din nou si nu era bine
+            // asa ca, am setat txtmedie ca fiind invizibil
+            //daca e e vizibil => ca nu a mai fost apasat dupa o modificare
+
+            //fadeout pentru textMedie
+            Animation fadeOut = new AlphaAnimation(1, 0);
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setDuration(1000);
+
+            AnimationSet medieAnim = new AnimationSet(false);
+            medieAnim.addAnimation(fadeOut);
+            txtMedie.setAnimation(medieAnim);
+
+            txtMedie.setVisibility(View.INVISIBLE);
+            wasCleared = true;
+        }
+        if(logo.getVisibility() == View.INVISIBLE) {
+            //fadein pt logo
+            Animation fadeIn = new AlphaAnimation(0, 1);
+            fadeIn.setInterpolator(new AccelerateInterpolator());
+            fadeIn.setStartOffset(500);
+            fadeIn.setDuration(500);
+
+            AnimationSet logoAnim = new AnimationSet(false);
+            logoAnim.addAnimation(fadeIn);
+            logo.setAnimation(logoAnim);
+
+            logo.setVisibility(View.VISIBLE);
+
+        }
+        ((EditText) findViewById(R.id.editNote)).setText("");
+        ((EditText) findViewById(R.id.editTeza)).setText("");
     }
+
 }
