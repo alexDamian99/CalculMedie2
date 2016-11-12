@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     logo.setVisibility(View.INVISIBLE);
 
                     //dis make txtMEDIE appear
+
                     medieAnimation.addAnimation(fadeIn);
                     txtMedie.setAnimation(medieAnimation);
                     txtMedie.setVisibility(View.VISIBLE);
