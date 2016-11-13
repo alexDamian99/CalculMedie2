@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,20 +27,33 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="40dip" />
+                android:layout_height="15dip" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="57dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/txtViewMedie"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#D2D2D2" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    app:srcCompat="@drawable/divide"
+                    android:id="@+id/logo"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/txtViewMedie"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#D2D2D2"
+                    android:paddingTop="40dip" />
+            </FrameLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="70dp" />
+                android:layout_height="30dp" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -55,17 +69,6 @@
                     android:layout_row="0"
                     android:layout_column="1"
                     android:textColor="#D2D2D2" />
-
-                <EditText
-                    android:inputType="text"
-                    android:layout_width="150dip"
-                    android:layout_height="40dip"
-                    android:textAlignment="center"
-                    android:id="@+id/editNote"
-                    android:hint="@string/hintEditNote"
-                    android:background="#26243a"
-                    android:layout_row="0"
-                    android:layout_column="3" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,7 +90,7 @@
                     android:inputType="text"
                     android:layout_width="150dip"
                     android:layout_height="40dip"
-                    android:textAlignment="center"
+
                     android:id="@+id/editTeza"
                     android:hint="@string/hintEditTeza"
                     android:background="#26243a"
@@ -111,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btnClear"
-                    android:textColor="#1e1770"
+                    android:textColor="#D2D2D2"
                     android:textStyle="bold"
                     android:id="@+id/btnClear"
                     android:background="#c44855"
@@ -125,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btnCalcMedie"
-                    android:textColor="#1e1770"
+                    android:textColor="#D2D2D2"
                     android:textStyle="bold"
                     android:id="@+id/btnMedie"
                     android:background="#c44855"
@@ -135,7 +138,22 @@
                     android:layout_columnSpan="4"
                     android:layout_gravity="fill_horizontal"
                     android:onClick="onClickMedie"
-                     />
+                    />
+
+                <EditText
+
+                    android:layout_width="150dip"
+                    android:layout_height="40dip"
+                    android:id="@+id/editNote"
+                    android:hint="@string/hintEditNote"
+                    android:background="#26243a"
+                    android:layout_row="0"
+                    android:layout_column="3"
+
+                    android:inputType="text|textMultiLine|textCapSentences"
+
+
+                    />
 
             </GridLayout>
 
