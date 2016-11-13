@@ -213,8 +213,12 @@ public class MainActivity extends AppCompatActivity {
             logo.setVisibility(View.VISIBLE);
 
         }
-        ((EditText) findViewById(R.id.editNote)).setText("");
-        ((EditText) findViewById(R.id.editTeza)).setText("");
+
+        EditText editNote = (EditText) findViewById(R.id.editNote);
+        EditText editTeza = ((EditText) findViewById(R.id.editTeza));
+        editNote.setText("");
+        editTeza.setText("");
+        editNote.requestFocus(); // editNote primeste focus
     }
 
 }
