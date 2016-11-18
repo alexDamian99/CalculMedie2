@@ -6,5 +6,6 @@
     <string name="btnCalcMedie">Calculează\nMedie</string>
     <string name="hintEditNote">" "ex: 10 8 10</string>
     <string name="hintEditTeza">" "ex: 9</string>
+    <string name="btnIstoric">Istoric</string>
 
 </resources>
