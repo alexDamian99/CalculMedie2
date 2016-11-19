@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "devsaa.calculmedie";
-    //private boolean isReached = false;
+    private int ok = 0; // flag pt cazul in care uitucul apasa de mai multe ori istoric cand este deja afisata in txtViewMedie o medie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (sNote.compareTo("") != 0) {
                 txtMedie.setText(String.format("%.2f", S));  // if the editTexts are filled do make the medie and make animation
-
+                ok = 1;
                 //if-ul este pt cazul in care facem mai multe medii(apasam butonul de mai multe ori)
                 if(!isBtnClicked) {
 
@@ -224,8 +224,9 @@ public class MainActivity extends AppCompatActivity {
     String istoric = "";//stringul in care vom memora
     public void onClickHistory(View v){
         TextView txt = (TextView)findViewById(R.id.txtViewMedie);
-        if (txt != null) {
+        if (txt != null && ok == 1) {
             istoric += (txt.getText().toString() + "\n");
+            ok = 0;
         }
 
         Intent intent = new Intent(this, history.class);
