@@ -15,9 +15,9 @@ public class history extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); // iti ia intentul care ti-a deschis activity-ul asta
 
-        String istoric = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String istoric = intent.getStringExtra(MainActivity.EXTRA_MESSAGE); // pui istoricul din intentul ce face legatura cu mainActivityul
 
         TextView textView = new TextView(this);
         textView.setText(istoric);

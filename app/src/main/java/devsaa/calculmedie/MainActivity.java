@@ -234,4 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickInfo(ImageView v){
+
+    }
 }
