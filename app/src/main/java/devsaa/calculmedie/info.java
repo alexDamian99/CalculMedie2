@@ -14,7 +14,6 @@ public class info extends AppCompatActivity {
     }
 
     public void onClickBack(View v){
-        Intent intentBack = new Intent(this, MainActivity.class);
-        startActivity(intentBack);
+        finish();
     }
 }

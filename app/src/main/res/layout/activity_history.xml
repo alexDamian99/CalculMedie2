@@ -13,10 +13,10 @@
     >
 
     <LinearLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
+        android:layout_width="match_parent"
+        android:weightSum="1">
 
         <ImageView
             android:layout_width="40dp"
@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="139dp"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -35,33 +35,41 @@
             android:text="@string/istoricHeader"
             android:textSize="25dp"
             android:textColor="#cf3d4c"
-            />
+            android:padding="@dimen/activity_horizontal_margin" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingTop="30dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/txtViewIstoric"
+                android:textSize="20dp"
+                android:textColor="#d4a9ae"
+                android:layout_weight="0.57"
+                android:layout_height="match_parent" />
+        </ScrollView>
+
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:id="@+id/txtViewIstoric"
-            android:textSize="20dp"
-            android:textColor="#d4a9ae"
-            />
+            android:text="@string/btnClearHistory"
+            android:textColor="#D2D2D2"
+            android:textStyle="bold"
+            android:id="@+id/btnClearHistory"
+            android:background="#c44855"
+            android:layout_gravity="fill_horizontal"
+            android:onClick="onClickClearHistory"
+            android:layout_marginBottom="101dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_weight="0.18" />
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btnClearHistory"
-        android:textColor="#D2D2D2"
-        android:textStyle="bold"
-        android:id="@+id/btnClearHistory"
-        android:background="#c44855"
-        android:layout_gravity="fill_horizontal"
-        android:onClick="onClickClearHistory"
-        android:layout_marginBottom="101dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        />
 </RelativeLayout>

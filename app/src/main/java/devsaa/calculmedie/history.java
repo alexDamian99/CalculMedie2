@@ -6,17 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class history extends AppCompatActivity {
 
     String istoric = "";
-    public static TextView istoricView;
+    TextView istoricView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
 
         Intent intent = getIntent(); // iti ia intentul care ti-a deschis activity-ul asta
 
@@ -34,6 +36,7 @@ public class history extends AppCompatActivity {
     public void onClickClearHistory(View v){
         MainActivity.istoric = "";
         MainActivity.indice = 0;
+
         istoricView.setText("");
     }
 }

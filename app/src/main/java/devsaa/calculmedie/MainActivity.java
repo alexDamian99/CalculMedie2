@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean wasCleared = false;
     private boolean isBtnClicked = false;
     //CAZ EXCEPTIE SPATIU TEZA SI POATE O ANIMATIE DE FADE LA MEDIE DUPA MEDIE
+
+
+    public static String istoric = "";//stringul in care vom memora notele pt istoric
+    public static int indice = 0; //indicele pt istoric
+
+
     public void onClickMedie(View v){
         //creez niste variabile pentru imgViewLogo si pentru TxtMedie
         ImageView logo = (ImageView)findViewById(R.id.logo);
@@ -138,6 +144,13 @@ public class MainActivity extends AppCompatActivity {
             if (sNote.compareTo("") != 0) {
                 txtMedie.setText(String.format("%.2f", S));  // if the editTexts are filled do make the medie and make animation
                 ok = 1;
+
+                if (txtMedie != null && ok == 1) {
+                    ++indice; //crestem indicele la facerea unei noi medii
+                    istoric += (indice + ")  " + txtMedie.getText().toString() + "\n\n");
+                }
+
+
                 //if-ul este pt cazul in care facem mai multe medii(apasam butonul de mai multe ori)
                 if(!isBtnClicked) {
 
@@ -222,16 +235,16 @@ public class MainActivity extends AppCompatActivity {
         editNote.requestFocus(); // editNote primeste focus
     }
     //trebuie sa fie public static daca vrem sa le accesam dintr-un alt activity, in cazu asta din history.java
-    public static String istoric = "";//stringul in care vom memora
-    public static int indice = 0; //indicele pt istoric
+
+
 
     public void onClickHistory(View v){
         TextView txt = (TextView)findViewById(R.id.txtViewMedie);
-        if (txt != null && ok == 1) {
+        /*if (txt != null && ok == 1) {
             ++indice; //crestem indicele la facerea unei noi medii
             istoric += (indice + ")  " + txt.getText().toString() + "\n\n");
             ok = 0;
-        }
+        }*/
 
         Intent intent = new Intent(this, history.class);
         intent.putExtra(EXTRA_MESSAGE, istoric);

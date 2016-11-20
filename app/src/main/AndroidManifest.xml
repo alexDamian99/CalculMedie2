@@ -15,9 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".history"/>
-        <activity android:name=".info">
+        <activity android:name=".history"
+            android:windowSoftInputMode="stateHidden">
         </activity>
+        <activity android:name=".info"
+            android:windowSoftInputMode="stateHidden"/>
+
+
     </application>
 
 </manifest>
