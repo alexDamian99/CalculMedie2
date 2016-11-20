@@ -6,9 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2A2840"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="devsaa.calculmedie.MainActivity">
 
@@ -23,11 +20,18 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dip" />
+            <ImageView
+                android:id="@+id/imgInfo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/info"
+                android:layout_gravity="right"
+                android:layout_margin="20dp"
+                android:onClick="onClickInfo"
+                android:layout_weight="0.21"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -53,11 +57,14 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="30dp" />
+                android:layout_height="25dp" />
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                >
 
                 <TextView
                     android:layout_width="93dp"
@@ -125,7 +132,7 @@
                     android:onClick="onClickClear" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:text="@string/btnCalcMedie"
                     android:textColor="#D2D2D2"

@@ -221,11 +221,15 @@ public class MainActivity extends AppCompatActivity {
         editTeza.setText("");
         editNote.requestFocus(); // editNote primeste focus
     }
-    String istoric = "";//stringul in care vom memora
+    //trebuie sa fie public static daca vrem sa le accesam dintr-un alt activity, in cazu asta din history.java
+    public static String istoric = "";//stringul in care vom memora
+    public static int indice = 0; //indicele pt istoric
+
     public void onClickHistory(View v){
         TextView txt = (TextView)findViewById(R.id.txtViewMedie);
         if (txt != null && ok == 1) {
-            istoric += (txt.getText().toString() + "\n");
+            ++indice; //crestem indicele la facerea unei noi medii
+            istoric += (indice + ")  " + txt.getText().toString() + "\n\n");
             ok = 0;
         }
 
@@ -235,7 +239,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickInfo(ImageView v){
-
+    public void onClickInfo(View v){
+        Intent infoIntent = new Intent(this, info.class);
+        startActivity(infoIntent);
     }
 }

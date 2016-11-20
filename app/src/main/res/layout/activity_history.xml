@@ -8,6 +8,60 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="devsaa.calculmedie.history">
+    tools:context="devsaa.calculmedie.history"
+    android:background="#2A2840"
+    >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back"
+            android:onClick="onClickBack"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="@string/istoricHeader"
+            android:textSize="25dp"
+            android:textColor="#cf3d4c"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:id="@+id/txtViewIstoric"
+            android:textSize="20dp"
+            android:textColor="#d4a9ae"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnClearHistory"
+        android:textColor="#D2D2D2"
+        android:textStyle="bold"
+        android:id="@+id/btnClearHistory"
+        android:background="#c44855"
+        android:layout_gravity="fill_horizontal"
+        android:onClick="onClickClearHistory"
+        android:layout_marginBottom="101dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>
