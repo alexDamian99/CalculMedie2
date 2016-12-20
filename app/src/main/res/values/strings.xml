@@ -10,8 +10,13 @@
     <string name="infoHeader">Bine ați venit !</string>
     <string name="infoBody">\tUn mod ingenios și rapid de a calcula media școlară semestrială. \n
         \tMunca profesorilor de a calcula media este redusă major, scopul nostru fiind atins cu eleganță și eficiență.\n\n
-        \tUtilizare:\n
-        \tÎn cazul în care utilizatorul introduce doar note din oral, media afișată va fi media aritmetică a notelor introduse.\n</string>
+        \tUtilizare:\n\n
+        \tIntroduceți notele cu spațiu între ele.
+        \tÎn cazul în care utilizatorul introduce doar note din oral, media afișată va fi media aritmetică a notelor introduse.\n\n\n
+        \tNe puteți contacta la urmatoarea adresă:\n
+        devsaa0101@gmail.com
+    </string>
     <string name="istoricHeader">\t\tIstoric:</string>
     <string name="btnClearHistory">Șterge istoric</string>
+
 </resources>

@@ -10,173 +10,184 @@
     tools:context="devsaa.calculmedie.MainActivity">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
 
-            <ImageView
-                android:id="@+id/imgInfo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/info"
-                android:layout_gravity="right"
-                android:layout_margin="20dp"
-                android:onClick="onClickInfo"
-                android:layout_weight="0.21"/>
 
-            <FrameLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:weightSum="1">
 
                 <ImageView
-                    android:layout_width="100dip"
-                    android:layout_height="100dip"
-                    app:srcCompat="@drawable/divide"
-                    android:id="@+id/logo"
-                    android:layout_gravity="center"/>
+                    android:id="@+id/imgInfo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/info"
+                    android:layout_gravity="right"
+                    android:layout_margin="20dp"
+                    android:onClick="onClickInfo"
+                    android:layout_weight="0.21"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/txtViewMedie"
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        app:srcCompat="@drawable/divide"
+                        android:id="@+id/logo"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/txtViewMedie"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="#D2D2D2"
+                        android:paddingTop="40dip" />
+                </FrameLayout>
+
+                <Space
+                    android:layout_width="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="#D2D2D2"
-                    android:paddingTop="40dip" />
-            </FrameLayout>
+                    android:layout_height="25dp" />
 
-            <Space
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="93dp"
+                        android:layout_height="52dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/note"
+                        android:textAlignment="center"
+                        android:id="@+id/txtViewNote"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:textColor="#D2D2D2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/notaTeza"
+                        android:id="@+id/txtViewTeza"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:textColor="#D2D2D2" />
+
+                    <Space
+                        android:layout_width="40dip"
+                        android:layout_height="20dp"
+                        android:layout_row="1"
+                        android:layout_column="2" />
+
+                    <EditText
+                        android:inputType="datetime|none"
+                        android:maxLength="2"
+                        android:layout_width="150dip"
+                        android:layout_height="40dip"
+                        android:layout_row="1"
+                        android:id="@+id/editTeza"
+                        android:hint="@string/hintEditTeza"
+                        android:background="#26243a"
+                        android:layout_column="3" />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="25dip"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="20dip"
+                        android:layout_row="5"
+                        android:layout_column="1" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnClear"
+                        android:textColor="#D2D2D2"
+                        android:textStyle="bold"
+                        android:id="@+id/btnClear"
+                        android:background="#c44855"
+                        android:layout_row="7"
+                        android:layout_column="1"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:onClick="onClickClear" />
+
+                    <Button
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnCalcMedie"
+                        android:textColor="#D2D2D2"
+                        android:textStyle="bold"
+                        android:id="@+id/btnMedie"
+                        android:background="#c44855"
+                        android:layout_row="3"
+                        android:layout_column="1"
+                        android:layout_rowSpan="2"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:onClick="onClickMedie"
+                        />
+
+                    <EditText
+                        android:inputType="datetime|none"
+                        android:layout_width="150dip"
+                        android:layout_height="40dip"
+                        android:id="@+id/editNote"
+                        android:hint="@string/hintEditNote"
+                        android:background="#26243a"
+                        android:layout_row="0"
+                        android:layout_column="3"
+                        />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnIstoric"
+                        android:id="@+id/btnIstoric"
+                        android:layout_row="8"
+                        android:layout_column="1"
+                        android:layout_rowSpan="1"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:onClick="onClickHistory"
+                        android:textColor="#D2D2D2"
+                        android:textStyle="bold"
+                        android:background="#c44855"
+                        android:layout_marginTop="20dp" />
+
+                </GridLayout>
+
+            </LinearLayout>
+
+
+
+            <!-- NOTE No need to develop a system service for keyboard, there is a standard View for that (well, not completely standard, its in a funny package 'android.inputmethodservice'. -->
+            <!-- NOTE The graphical layout does not know the package ('java.lang.NoClassDefFoundError: Could not initialize class android.inputmethodservice.KeyboardView') so the keyboard is not shown. -->
+            <android.inputmethodservice.KeyboardView
+                android:id="@+id/keyboardview"
                 android:layout_width="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="25dp" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone" />
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                >
 
-                <TextView
-                    android:layout_width="93dp"
-                    android:layout_height="52dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/note"
-                    android:textAlignment="center"
-                    android:id="@+id/txtViewNote"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:textColor="#D2D2D2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/notaTeza"
-                    android:id="@+id/txtViewTeza"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:textColor="#D2D2D2" />
-
-                <Space
-                    android:layout_width="40dip"
-                    android:layout_height="20dp"
-                    android:layout_row="1"
-                    android:layout_column="2" />
-
-                <EditText
-                    android:inputType="datetime"
-                    android:maxLength="2"
-                    android:layout_width="150dip"
-                    android:layout_height="40dip"
-                    android:layout_row="1"
-                    android:id="@+id/editTeza"
-                    android:hint="@string/hintEditTeza"
-                    android:background="#26243a"
-                    android:layout_column="3" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="25dip"
-                    android:layout_row="2"
-                    android:layout_column="1"
-                    />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="20dip"
-                    android:layout_row="5"
-                    android:layout_column="1" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btnClear"
-                    android:textColor="#D2D2D2"
-                    android:textStyle="bold"
-                    android:id="@+id/btnClear"
-                    android:background="#c44855"
-                    android:layout_row="7"
-                    android:layout_column="1"
-                    android:layout_columnSpan="4"
-                    android:layout_gravity="fill_horizontal"
-                    android:onClick="onClickClear" />
-
-                <Button
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btnCalcMedie"
-                    android:textColor="#D2D2D2"
-                    android:textStyle="bold"
-                    android:id="@+id/btnMedie"
-                    android:background="#c44855"
-                    android:layout_row="3"
-                    android:layout_column="1"
-                    android:layout_rowSpan="2"
-                    android:layout_columnSpan="4"
-                    android:layout_gravity="fill_horizontal"
-                    android:onClick="onClickMedie"
-                    />
-
-                <EditText
-                    android:inputType="datetime"
-                    android:layout_width="150dip"
-                    android:layout_height="40dip"
-                    android:id="@+id/editNote"
-                    android:hint="@string/hintEditNote"
-                    android:background="#26243a"
-                    android:layout_row="0"
-                    android:layout_column="3"
-                    />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btnIstoric"
-                    android:id="@+id/btnIstoric"
-                    android:layout_row="8"
-                    android:layout_column="1"
-                    android:layout_rowSpan="1"
-                    android:layout_columnSpan="4"
-                    android:layout_gravity="fill_horizontal"
-                    android:onClick="onClickHistory"
-                    android:textColor="#D2D2D2"
-                    android:textStyle="bold"
-                    android:background="#c44855"
-                    android:layout_marginTop="20dp" />
-
-            </GridLayout>
-
-        </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>

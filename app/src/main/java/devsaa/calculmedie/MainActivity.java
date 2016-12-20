@@ -17,18 +17,20 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "devsaa.calculmedie";
     private int ok = 0; // flag pt cazul in care uitucul apasa de mai multe ori istoric cand este deja afisata in txtViewMedie o medie
+    CustomKeyboard mCustomKeyboard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //commit in pzm
         //un fadein la inceput pt logo
-        ImageView logo = (ImageView)findViewById(R.id.logo);
+        ImageView logo = (ImageView) findViewById(R.id.logo);
         logo.setVisibility(View.INVISIBLE);
 
         Animation fadeIn = new AlphaAnimation(0, 1);
@@ -41,8 +43,16 @@ public class MainActivity extends AppCompatActivity {
         logo.setAnimation(logoAnimation);
         logo.setVisibility(View.VISIBLE);
 
-
+        mCustomKeyboard= new CustomKeyboard(this, R.id.keyboardview, R.xml.keyboard);
+        mCustomKeyboard.registerEditText(R.id.editNote);
+        mCustomKeyboard.registerEditText(R.id.editTeza);
     }
+
+    @Override public void onBackPressed() {
+        // NOTE Trap the back key: when the CustomKeyboard is still visible hide it, only when it is invisible, finish activity
+        if( mCustomKeyboard.isCustomKeyboardVisible() ) mCustomKeyboard.hideCustomKeyboard(); else this.finish();
+    }
+
     private boolean wasCleared = false;
     private boolean isBtnClicked = false;
     //CAZ EXCEPTIE SPATIU TEZA SI POATE O ANIMATIE DE FADE LA MEDIE DUPA MEDIE
@@ -52,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
     public static int indice = 0; //indicele pt istoric
 
 
-    public void onClickMedie(View v){
+    public void onClickMedie(View v) {
         //creez niste variabile pentru imgViewLogo si pentru TxtMedie
-        ImageView logo = (ImageView)findViewById(R.id.logo);
-        TextView txtMedie = (TextView)findViewById(R.id.txtViewMedie);
-        if(wasCleared){
+        ImageView logo = (ImageView) findViewById(R.id.logo);
+        TextView txtMedie = (TextView) findViewById(R.id.txtViewMedie);
+        if (wasCleared) {
             txtMedie.setText("");//setez textul aici deoarece daca faceam asta in btnclear textul disparea inainte ca animatia sa se termine
         }
         wasCleared = false;
@@ -80,12 +90,13 @@ public class MainActivity extends AppCompatActivity {
         AnimationSet medieAnimation = new AnimationSet(false);
 
         //hide keyboard
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(R.id.btnMedie).getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        mCustomKeyboard.hideCustomKeyboard();
 
         String sNote; // stringul pt note
         String[] note; // notele introduse in editNote
-        sNote = ((EditText)findViewById(R.id.editNote)).getText().toString(); // gets the marks from the editNote
+        sNote = ((EditText) findViewById(R.id.editNote)).getText().toString(); // gets the marks from the editNote
         note = sNote.split("\\s"); // splits them in note[]
 
 
@@ -104,18 +115,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         String sTeza; // stringul pt teza
-        sTeza = ((EditText)findViewById(R.id.editTeza)).getText().toString(); // gets the marks from editTeza
+        sTeza = ((EditText) findViewById(R.id.editTeza)).getText().toString(); // gets the marks from editTeza
         String[] teza;
         teza = sTeza.split("\\s"); // puts all the marks from editTeza in teza[]
 
-        if(sNote.compareTo("") != 0)logo.setVisibility(View.INVISIBLE);//fac logo-ul invizibil ca sa mearga jucarica de la btnclear
+        if (sNote.compareTo("") != 0)
+            logo.setVisibility(View.INVISIBLE);//fac logo-ul invizibil ca sa mearga jucarica de la btnclear
 
         double S = 0;
         int K = 0;
 
-        try{
+        try {
 
-            for(String str : note){//pentru fiecare variabila de tip String din vectorul note vom face:
+            for (String str : note) {//pentru fiecare variabila de tip String din vectorul note vom face:
                 if (str.compareTo("") != 0) {//in cazul in care nu este null il adunam la suma
                     double nr;
                     nr = Integer.parseInt(str);
@@ -124,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            S/=K;//facem media pentru note
+            S /= K;//facem media pentru note
 
-            try{
+            try {
                 double Teza = Integer.parseInt(teza[0]); // parses the first mark in editTeza
-                S = (S * 3 + Teza)/4;
-            }catch (Exception e){
+                S = (S * 3 + Teza) / 4;
+            } catch (Exception e) {
                 final Toast toast = Toast.makeText(getApplicationContext(), "Lipsa teza", Toast.LENGTH_SHORT);
                 toast.show();
                 Handler handler = new Handler();
@@ -152,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //if-ul este pt cazul in care facem mai multe medii(apasam butonul de mai multe ori)
-                if(!isBtnClicked) {
+                if (!isBtnClicked) {
 
                     // this will make the logo disappear
                     isBtnClicked = true;
@@ -167,10 +179,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-            }
-            else txtMedie.setText(""); // else show Medie as ""
+            } else txtMedie.setText(""); // else show Medie as ""
 
-        }catch(Exception e){
+        } catch (Exception e) {
             final Toast toast = Toast.makeText(getApplicationContext(), "Date incorete", Toast.LENGTH_SHORT);
             toast.show();
 
@@ -185,18 +196,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickClear(View v){
+    public void onClickClear(View v) {
         //show keyboard
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0); // aici nu am gasit cum sa fie doar "show keyboard".. :/ am gasit doar toggle
-        /*asta nu merge
-        imm.showSoftInput(findViewById(R.id.btnClear), InputMethod.SHOW_FORCED); */
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0); // aici nu am gasit cum sa fie doar "show keyboard".. :/ am gasit doar toggle
+        //un petit problem here.. TODO sa faci sa se inchdia tastatura la onlcickclear
+        //TODO si mai treci o data prin tut ala. sa nu fi ratat ceva
+
 
         isBtnClicked = false;
         //animatii
-        ImageView logo = (ImageView)findViewById(R.id.logo);
-        TextView txtMedie = (TextView)findViewById(R.id.txtViewMedie);
-        if(txtMedie.getVisibility() == View.VISIBLE) {// deci aici am avut o problema
+        ImageView logo = (ImageView) findViewById(R.id.logo);
+        TextView txtMedie = (TextView) findViewById(R.id.txtViewMedie);
+        if (txtMedie.getVisibility() == View.VISIBLE) {// deci aici am avut o problema
             //cand mai apasam inca o data pe clear, dupa ce am apasat acest buton o data, animatia cu medie pornea din nou si nu era bine
             // asa ca, am setat txtmedie ca fiind invizibil
             //daca e e vizibil => ca nu a mai fost apasat dupa o modificare
@@ -213,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             txtMedie.setVisibility(View.INVISIBLE);
             wasCleared = true;
         }
-        if(logo.getVisibility() == View.INVISIBLE) {
+        if (logo.getVisibility() == View.INVISIBLE) {
             //fadein pt logo
             Animation fadeIn = new AlphaAnimation(0, 1);
             fadeIn.setInterpolator(new AccelerateInterpolator());
@@ -237,9 +249,8 @@ public class MainActivity extends AppCompatActivity {
     //trebuie sa fie public static daca vrem sa le accesam dintr-un alt activity, in cazu asta din history.java
 
 
-
-    public void onClickHistory(View v){
-        TextView txt = (TextView)findViewById(R.id.txtViewMedie);
+    public void onClickHistory(View v) {
+        TextView txt = (TextView) findViewById(R.id.txtViewMedie);
         /*if (txt != null && ok == 1) {
             ++indice; //crestem indicele la facerea unei noi medii
             istoric += (indice + ")  " + txt.getText().toString() + "\n\n");
@@ -252,8 +263,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickInfo(View v){
+    public void onClickInfo(View v) {
         Intent infoIntent = new Intent(this, info.class);
         startActivity(infoIntent);
     }
+
 }
